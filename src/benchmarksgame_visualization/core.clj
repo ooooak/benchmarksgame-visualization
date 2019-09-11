@@ -111,12 +111,8 @@
 
 (def added-sum (map add-result-up data))
 
-; (p (take 3 (reverse (sort-by :gz added-sum))))
 
-; speed
 ; (p (sort-by :secs added-sum))
-
-; size
 ; (p (sort-by :gz added-sum))
 ; (p (sort-by :mem added-sum))
 

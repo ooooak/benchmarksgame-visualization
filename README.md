@@ -1,5 +1,50 @@
-# benchmarksgame data 
+### See which lang perform better in single area
 
+TODO: (there are lots of things we can do but i dont think i am gonna put more time into it)
+
+0. add tests.
+
+1. improve code quality.
+
+2. add user interface visualization.
+
+3. language to language comparison (as of now we only compare algorithms that exists in all the languages).
+
+4. filter languages that don't have all the tests.
+
+
+
+> lein repl 
+
+> (p (sort-by :secs added-sum))
+> (p (sort-by :gz added-sum))
+> (p (sort-by :mem added-sum))
+
+
+gz for code size ,  :secs for speed, for memory usage :mem. 
+
+# pascal uses way less memory
+``` 
+({:gz 9108, :mem 149576, :secs 26.86, :busy 78.41, :lang :c++}                
+ {:gz 6034,                                                                   
+  :mem 165760,                                                                
+  :secs 66.83000000000001,                                                    
+  :busy 165.46,                                                               
+  :lang :pascal}                                                              
+ {:gz 6480,                                                                   
+  :mem 187624,                                                                
+  :secs 38.120000000000005,                                                   
+  :busy 108.62,                                                               
+  :lang :fortran}                                                             
+ {:gz 7280,                                                                   
+  :mem 190688,                                                                
+  :secs 24.68,                                                                
+  :busy 78.22999999999999,                                                    
+  :lang :rust}
+  .....
+```
+
+### overall data 
 ```
 {:lua
  {:spectral-norm {:gz 329, :mem 2872, :secs 192.8, :busy 199.44},
