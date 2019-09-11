@@ -1,6 +1,8 @@
 # benchmarksgame data 
 
+TODO: clean data properly 
 
+```
 {:lua
  {:spectral-norm {:gz 329, :mem 2, :secs 192.8, :busy 199.44},
   :regex-redux {},
@@ -298,3 +300,5 @@
   :k-nucleotide {:gz 1502, :mem 461, :secs 35.5, :busy 93.65},
   :reverse-complement {},
   :fasta {:gz 1403, :mem 128, :secs 8.63, :busy 9.28}}}
+
+``
