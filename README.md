@@ -6,31 +6,29 @@ TODO: (there are lots of things we can do but i dont think i am gonna put more t
 
 1. improve code quality.
 
-2. add user interface visualization.
+2. add user interface visualization (if someone is interested ping me i will be happy to help).
 
 3. language to language comparison (as of now we only compare algorithms that exists in all the languages).
 
 4. filter languages that don't have all the tests.
 
-
+### how to run
 
 > lein repl 
 
 > (p (sort-by :secs added-sum))
+
 > (p (sort-by :gz added-sum))
+
 > (p (sort-by :mem added-sum))
 
 
-gz for code size ,  :secs for speed, for memory usage :mem. 
+> `:gz` for code size ,  `:secs` for speed, for memory usage `:mem`. 
 
 # pascal uses way less memory
 ``` 
 ({:gz 9108, :mem 149576, :secs 26.86, :busy 78.41, :lang :c++}                
- {:gz 6034,                                                                   
-  :mem 165760,                                                                
-  :secs 66.83000000000001,                                                    
-  :busy 165.46,                                                               
-  :lang :pascal}                                                              
+ {:gz 6034,  :mem 165760,  :secs 66.83000000000001, :busy 165.46,  :lang :pascal} 
  {:gz 6480,                                                                   
   :mem 187624,                                                                
   :secs 38.120000000000005,                                                   
@@ -42,6 +40,19 @@ gz for code size ,  :secs for speed, for memory usage :mem.
   :busy 78.22999999999999,                                                    
   :lang :rust}
   .....
+```
+
+## ocaml is over all awesome in terms of speed, code size memory usage.
+
+```
+({:gz 4192, :mem 2389964, :secs 2693.51, :busy 3379.95, :lang :lua}
+ {:gz 4488, :mem 418408, :secs 64.76, :busy 175.74, :lang :chapel} 
+ {:gz 4659, :mem 2328580, :secs 2232.7299999999996, :busy 6416.66, :lang :perl} 
+ {:gz 5112, :mem 1621772, :secs 71.82, :busy 179.45, :lang :julia}
+ {:gz 5302, :mem 388648,  :secs 83.55999999999999, :busy 194.03,  :lang :ocaml}
+ {:gz 5448, :mem 1290572, :secs 161.93999999999997, :busy 252.11, :lang :typescript}
+ {:gz 5632, :mem 606564,  :secs 453.57000000000005, :busy 1120.1399999999999, :lang :erlang}
+ {:gz 5813, :mem 1295768, :secs 1855.7399999999998, :busy 4936.79,  :lang :python}
 ```
 
 ### overall data 
