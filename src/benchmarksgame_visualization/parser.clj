@@ -10,6 +10,7 @@
 
 (comment
   (in-ns 'benchmarksgame-visualization.parser)
+  (def p clojure.pprint/pprint)
   (require '[benchmarksgame-visualization.http :as http] :reload)
   (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")
   (def home-html (http/request home-page))
@@ -25,6 +26,7 @@
   ; (def result-vals (list "1.75" "4580" "1130" "1.78"))
   ())
 
+
 (defn grab [content query]
   (html/select content query))
 
@@ -33,14 +35,15 @@
   (if (string? input)
     (-> (clojure.string/trim input)
         (string/replace "," "")
-        (string/replace "&nbsp;" " ")))
-  input)
-
+        (string/replace "&nbsp;" " "))
+    input))
+  
 
 (defn read-num [item]
   (if (string? item)
     (edn/read-string item)
     item))
+
 
 (defn clear-cpu-load [item]
   (try
@@ -83,10 +86,6 @@
       (keyword name))))
 
 
-
-
-
-
 (defn algorithm-result-values [block]
   (let [content (nth (:content block) 3)
         content (rest (rest (:content content)))
@@ -96,6 +95,7 @@
     (if (> (count result) 3)
       (create-map [:secs :mem :gz :busy] result)
       {})))
+
 
 ; (if (> (count result) 3)
 ;   (let [cpu-load (clear-cpu-load (last values))]
@@ -122,5 +122,3 @@
     (if (empty? blocks)
       nil
       (map benchmark-result (pop (vec blocks))))))
-
-; (map println result-rows)

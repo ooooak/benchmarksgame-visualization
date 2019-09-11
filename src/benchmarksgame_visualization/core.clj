@@ -71,12 +71,11 @@
 
 
 (comment
+  ; write to data
   (def crawl-data (crawl))
   (def file-data (apply merge crawl-data))
   (spit result-file file-data)
   (def data (edn/read-string (slurp result-file)))
-
-
   ())
 
 
