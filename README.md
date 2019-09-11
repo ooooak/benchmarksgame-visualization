@@ -42,7 +42,7 @@ TODO: (there are lots of things we can do but i dont think i am gonna put more t
   .....
 ```
 
-## ocaml is over all awesome in terms of speed, code size memory usage.
+## ocaml is over all awesome in terms of speed, code size and memory usage.
 
 ```
 ({:gz 4192, :mem 2389964, :secs 2693.51, :busy 3379.95, :lang :lua}
