@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="./dist/Chart.css">
+  
+</head>
+<body>
+	<div style="width:80%; margin:auto;">
+			<canvas id="cpu"></canvas>
+			<canvas id="ram"></canvas>
+			<canvas id="code"></canvas>	
+	</div>
+		
+
+    <script src="./dist/Chart.min.js"></script>
+
+<script>
+const draw = function(div, data){
+	const ctx = document.getElementById(div).getContext("2d");
+	const options = {
+		barValueSpacing: 10,
+		scales: { yAxes: [{ ticks: { min: 0 } }] }
+	};
+
+	new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options,
+	});
+};
+
+
+const ram = JSON.parse("{\"labels\":[\"ada\",\"rust\",\"c\",\"c++\",\"ocaml\",\"haskell\",\"c#\",\"php\",\"swift\",\"go\",\"chapel\",\"python\",\"ruby\",\"java\",\"julia\",\"javascript\",\"racket\",\"f#\",\"perl\",\"erlang\"],\"datasets\":[{\"label\":\"ram\",\"backgroundColor\":\"blue\",\"data\":[1461160,1476152,1479532,1510164,1667428,2101500,2603640,2644924,2748232,2811488,2845080,2946044,2958588,3009852,3190268,3727300,3775092,4081892,5239508,6851288]}]}");
+
+const code = JSON.parse("{\"labels\":[\"perl\",\"chapel\",\"ruby\",\"julia\",\"php\",\"erlang\",\"python\",\"ocaml\",\"racket\",\"go\",\"f#\",\"swift\",\"javascript\",\"haskell\",\"c\",\"rust\",\"java\",\"c++\",\"c#\",\"ada\"],\"datasets\":[{\"label\":\"code\",\"backgroundColor\":\"gray\",\"data\":[6679,7137,8245,8355,8814,9481,9492,9598,10131,10372,10445,10818,11842,12066,12445,12849,13438,13786,14370,26608]}]}");
+
+const cpu = JSON.parse("{\"labels\":[\"c\",\"rust\",\"c++\",\"ada\",\"c#\",\"java\",\"f#\",\"chapel\",\"julia\",\"haskell\",\"go\",\"javascript\",\"ocaml\",\"swift\",\"racket\",\"erlang\",\"php\",\"python\",\"ruby\",\"perl\"],\"datasets\":[{\"label\":\"cpu\",\"backgroundColor\":\"red\",\"data\":[34.57,35.55,35.879999999999995,64.46,71.22000000000001,85.17999999999999,86.42000000000002,94.42000000000002,99.31,120.6,122.76999999999998,139.53,141.19000000000003,156.78000000000003,358.9,688.27,856.23,1969.5599999999997,1979.67,2320.1]}]}");
+
+draw("ram", ram);
+draw("cpu", cpu);
+draw("code", code);
+</script>
+  
+</body>    
+</html>

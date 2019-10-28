@@ -1,23 +1,30 @@
-(ns benchmarksgame-visualization.core
+(ns bg-visualize.core
   (:require
-   [benchmarksgame-visualization.actions.disqualify-languages :as diq-lang]
-   [benchmarksgame-visualization.actions.disqualify-algorithm :as diq-algo]
-   [benchmarksgame-visualization.parser :as parser]
-   [benchmarksgame-visualization.http :as http]
+   [bg-visualize.invalid-lang :as invalid-lang]
+   [bg-visualize.sum :as sum]
+   [bg-visualize.parser :as parser]
+   [bg-visualize.http :as http]
+   [bg-visualize.chartdata :as chartdata]
    [clojure.string :as string]
    [clj-http.client :as client]
    [net.cgrand.enlive-html :as html]
-   [clojure.edn :as edn])
+   [clojure.edn :as edn]
+   [cheshire.core :refer :all])
   (:gen-class))
 
 
 (def p clojure.pprint/pprint)
+
 (def result-file "results.edn")
+
 (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")
 
+(defn json [data]
+  (generate-string data))
+
 (comment
-  (require '[benchmarksgame-visualization.actions.sum :as sum] :reload)
-(require '[benchmarksgame-visualization.actions.disqualify-algorithm :as diq-algo] :reload)
+  (require '[bg-visualize.sum :as sum] :reload)
+(require '[bg-visualize.disqualify-algorithm :as diq-algo] :reload)
   (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")
   (def home-html (http/request home-page))
   (def list-of-laguages (parser/lang-pages home-html))
@@ -52,27 +59,35 @@
 (def data (edn/read-string (slurp result-file)))
 
 
-(def data-disqualified-languages
-  (let [languages (diq-lang/disqualified-languages data)]
-    (diq-lang/dissoc-languages data languages)))
+; (def data-disqualified-algorithms
+;   (let [missing-algorithms (diq-algo/get-missing-algorithms data)]
+;     (diq-algo/dissoc-algorithems data missing-algorithms)))
+
+; (def sum-disqualified-algorithms
+;   (sum/sum data-disqualified-algorithms))
 
 
-(def data-disqualified-algorithms
-  (let [missing-algorithms (diq-algo/get-missing-algorithms data)]
-    (diq-algo/dissoc-algorithems data missing-algorithms)))
+; really bad, make it easy
+
+; :lua :chapel :pascal :lisp :typescript :smalltalk
+; :swift :julia :ada :c :c++ :f# :c# :perl
+; :fortran :dart
+(def langs-to-skip
+  (list))
+
+(def data-sum
+  (let [languages (invalid-lang/get data)
+        data (invalid-lang/drop data languages)
+        data (invalid-lang/drop data langs-to-skip)]
+    (sum/sum data)))
 
 
-(def sum-disqualified-languages
-  (sum/sum data-disqualified-languages))
+(def ram (json (chartdata/gen-data data-sum :mem)))
+(def code (json (chartdata/gen-data data-sum :gz)))
+(def cpu (json (chartdata/gen-data data-sum :secs)))
 
-(def sum-disqualified-algorithms
-  (sum/sum data-disqualified-algorithms))
-
-
-
-; (p (sort-by :secs sum-disqualified-languages))
+; (p (sort-by :secs (:cpu chart-data)))
 ; (p (sort-by :gz sum-disqualified-algorithms))
-; (p (sort-by :mem added-sum))
 
 
 (defn -main

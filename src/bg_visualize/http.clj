@@ -1,4 +1,4 @@
-(ns benchmarksgame-visualization.http
+(ns bg-visualize.http
   (:require
    [clj-http.client :as client]
    [net.cgrand.enlive-html :as html])

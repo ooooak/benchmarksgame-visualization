@@ -2,6 +2,7 @@
 
 TODO: (there are lots of things we can do but i dont think i am gonna put more time into it)
 
+
 0. add tests.
 
 1. improve code quality.
@@ -10,7 +11,9 @@ TODO: (there are lots of things we can do but i dont think i am gonna put more t
 
 3. language to language comparison (as of now we only compare algorithms that exists in all the languages).
 
-4. filter languages that don't have all the tests.
+
+
+![Benchmark](https://imgur.com/FbloDcg)
 
 ### how to run
 

@@ -1,6 +1,6 @@
-(ns benchmarksgame-visualization.parser
+(ns bg-visualize.parser
   (:require
-   [benchmarksgame-visualization.http :as http]
+   [bg-visualize.http :as http]
    [clojure.string :as string]
    [clj-http.client :as client]
    [net.cgrand.enlive-html :as html]
@@ -9,9 +9,9 @@
 
 
 (comment
-  (in-ns 'benchmarksgame-visualization.parser)
+  (in-ns 'bg-visualize.parser)
   (def p clojure.pprint/pprint)
-  (require '[benchmarksgame-visualization.http :as http] :reload)
+  (require '[bg-visualize.http :as http] :reload)
   (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")
   (def home-html (http/request home-page))
   (def list-of-laguages (lang-pages home-html))

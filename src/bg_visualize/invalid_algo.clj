@@ -1,11 +1,4 @@
-(ns benchmarksgame-visualization.actions.disqualify-algorithm
-  (:require
-   [benchmarksgame-visualization.parser :as parser]
-   [benchmarksgame-visualization.http :as http]
-   [clojure.string :as string]
-   [clj-http.client :as client]
-   [net.cgrand.enlive-html :as html]
-   [clojure.edn :as edn])
+(ns bg-visualize.invalid-algo
   (:gen-class))
 
 (defn- get-algorithms [algorithms-with-empty-data]

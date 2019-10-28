@@ -1,4 +1,4 @@
-(ns benchmarksgame-visualization.actions.sum
+(ns bg-visualize.sum
   (:gen-class))
 
 
