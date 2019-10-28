@@ -12,8 +12,7 @@ TODO: (there are lots of things we can do but i dont think i am gonna put more t
 3. language to language comparison (as of now we only compare algorithms that exists in all the languages).
 
 
-
-![Benchmark](https://imgur.com/FbloDcg)
+![Results](https://i.imgur.com/FbloDcg.jpg)
 
 ### how to run
 
