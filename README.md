@@ -1,31 +1,10 @@
-### See which lang perform better in single area
-
-TODO: (there are lots of things we can do but i dont think i am gonna put more time into it)
-
+TODO: 
 
 0. add tests.
 
 1. improve code quality.
 
-2. add user interface visualization (if someone is interested ping me i will be happy to help).
-
-3. language to language comparison (as of now we only compare algorithms that exists in all the languages).
-
-
 ![Results](https://i.imgur.com/FbloDcg.jpg)
-
-### how to run
-
-> lein repl 
-
-> (p (sort-by :secs added-sum))
-
-> (p (sort-by :gz added-sum))
-
-> (p (sort-by :mem added-sum))
-
-
-> `:gz` for code size ,  `:secs` for speed, for memory usage `:mem`. 
 
 
 ### overall data 
