@@ -2,23 +2,19 @@
   (:gen-class))
 
 
-(defn- sum-by-keys [key values]
-  (apply + (map key values)))
+(defrecord Benchmark [lang cpu ram code])
 
+(defn sum-result [index data]
+  (apply + (map index data)))
 
-; We can make this function better
-; TODO: it will blow up if we pass mssing index
-(defn- sum-result [rows]
-  (let [rows (vals rows)]
-    {:gz (sum-by-keys :gz rows)
-     :mem (sum-by-keys :mem rows)
-     :secs (sum-by-keys :secs rows)
-     :busy (sum-by-keys :busy rows)}))
-
-
-(defn- sum* [[lang items]]
-  (assoc (sum-result items) :lang lang))
+(defn construct [result]
+  (let [lang (first result)
+        data (vals (second result))
+        cpu (sum-result :secs data)
+        ram (sum-result :mem data)
+        code (sum-result :gz data)]
+    (Benchmark. lang cpu ram code)))
 
 
 (defn sum [data]
-  (map sum* data))
+  (map construct data))

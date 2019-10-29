@@ -9,7 +9,6 @@
 
 
 (comment
-  (in-ns 'bg-visualize.parser)
   (def p clojure.pprint/pprint)
   (require '[bg-visualize.http :as http] :reload)
   (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")

@@ -24,7 +24,7 @@
 
 (comment
   (require '[bg-visualize.sum :as sum] :reload)
-(require '[bg-visualize.disqualify-algorithm :as diq-algo] :reload)
+  (require '[bg-visualize.invalid-algo :as algo] :reload)
   (def home-page "https://benchmarksgame-team.pages.debian.net/benchmarksgame/")
   (def home-html (http/request home-page))
   (def list-of-laguages (parser/lang-pages home-html))
@@ -66,25 +66,15 @@
 ; (def sum-disqualified-algorithms
 ;   (sum/sum data-disqualified-algorithms))
 
-
-; really bad, make it easy
-
-; :lua :chapel :pascal :lisp :typescript :smalltalk
-; :swift :julia :ada :c :c++ :f# :c# :perl
-; :fortran :dart
-(def langs-to-skip
-  (list))
-
-(def data-sum
-  (let [languages (invalid-lang/get data)
-        data (invalid-lang/drop data languages)
-        data (invalid-lang/drop data langs-to-skip)]
-    (sum/sum data)))
+(defn clean-data [data]
+  (let [langs (invalid-lang/get data)]
+    (invalid-lang/drop data (distinct langs))))
 
 
-(def ram (json (chartdata/gen-data data-sum :mem)))
-(def code (json (chartdata/gen-data data-sum :gz)))
-(def cpu (json (chartdata/gen-data data-sum :secs)))
+(def data (clean-data data))
+(def ram (json (chartdata/gen-data data :mem)))
+(def code (json (chartdata/gen-data data :gz)))
+(def cpu (json (chartdata/gen-data data :secs)))
 
 ; (p (sort-by :secs (:cpu chart-data)))
 ; (p (sort-by :gz sum-disqualified-algorithms))
