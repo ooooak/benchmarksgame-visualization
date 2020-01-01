@@ -1,9 +1,3 @@
-TODO: 
-
-0. add tests.
-
-1. improve code quality.
-
 ![Results](https://i.imgur.com/FbloDcg.jpg)
 
 
